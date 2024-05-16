@@ -25,6 +25,6 @@ public class MyProducer implements Supplier<Flux<Message<MyMessage>>> {
     }
     @Override
     public Flux<Message<MyMessage>> get() {
-        return null;
+        return sinks.asFlux();
     }
 }

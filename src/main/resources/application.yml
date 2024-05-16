@@ -23,6 +23,7 @@ spring:
           destination: my-json-topic
           content-type: application/json
         consumer-test :
+          group : test-consumer-group
           destination: my-json-topic
           content-type: application/json
           consumer:
