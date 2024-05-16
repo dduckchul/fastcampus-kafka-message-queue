@@ -1,15 +1,14 @@
 package com.fastcampus.kafkahandson.consumer;
 
 import com.fastcampus.kafkahandson.model.MyMessage;
-import org.springframework.messaging.Message;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Consumer;
-
 @Component
-public class MyConsumer implements Consumer<Message<MyMessage>> {
-    @Override
-    public void accept(Message<MyMessage> message) {
-        System.out.println("Message arrived! - " + message.getPayload());
+public class MyConsumer {
+    @KafkaListener(topics = "my-json-topic", groupId = "my-consumer-group")
+    public void accept(ConsumerRecord<String, MyMessage> message) {
+        System.out.println("Message arrived! - " + message.value());
     }
 }
