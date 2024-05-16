@@ -1,18 +1,26 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
-    consumer:
-      auto-offset-reset: latest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      properties:
-        spring.json.trusted.packages: '*'
-        allow.auto.create.topics: false
-    listener:
-      concurrency: 1
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      # 0일경우 acks를 기다리지 않음
-      # acks : 0
-      acks: 1
+    json :
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      consumer:
+        auto-offset-reset: latest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      listener:
+        concurrency: 1
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        acks: 1
+    string :
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      consumer:
+        auto-offset-reset: latest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      listener:
+        concurrency: 1
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        acks: 0

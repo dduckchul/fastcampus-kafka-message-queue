@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class MyConsumer {
     @KafkaListener(topics = "my-json-topic", groupId = "my-consumer-group")
     public void accept(ConsumerRecord<String, MyMessage> message) {
-        System.out.println("Message arrived! - " + message.value());
+        System.out.println("Main consumer Message arrived! - " + message.value());
     }
 }
